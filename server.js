@@ -54,8 +54,10 @@ app.post("/api/register", (req, res) => {
     return res.status(400).json({ message: "Invalid Gmail address." });
   }
 
-  const python = spawn("python", ["SignUp.py", name, email, password]);
+  //const python = spawn("python", ["SignUp.py", name, email, password]);
   //const python = spawn("python3", ["SignUp.py", name, email, password]);
+  const python = spawn("python3", ["SignUp.py", name, email, password]);
+
 
   python.stdout.on("data", (data) => {
     console.log(`Python Output: ${data}`);
