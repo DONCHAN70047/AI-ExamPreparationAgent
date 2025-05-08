@@ -85,8 +85,9 @@ app.post("/api/login", (req, res) => {
     return res.status(400).json({ message: "Email and password are required!" });
   }
 
-  const python = spawn("python", ["LoginCheck.py", email, password]);
+  //const python = spawn("python", ["LoginCheck.py", email, password]);
   //const python = spawn("python3", ["LoginCheck.py", email, password]);
+  const python = spawn("python3", ["LoginCheck.py", email, password]);
 
   python.stdout.on("data", (data) => {
     const output = data.toString().trim();
