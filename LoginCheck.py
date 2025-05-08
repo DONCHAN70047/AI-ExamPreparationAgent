@@ -1,22 +1,26 @@
 import sys
-import sqlite3
-
+import mysql.connector
 
 email = sys.argv[1]
 password = sys.argv[2]
 
+conn = mysql.connector.connect(
+    host="caboose.proxy.rlwy.net",
+    user="root",
+    password="kSFCjWBLJRtYdCvlbnoGYbrvhiwiBXso",
+    database="railway",
+    port=33995
+)
 
-conn = sqlite3.connect("users.db")
 cursor = conn.cursor()
 
-
-cursor.execute("SELECT * FROM users WHERE email = ? AND password = ?", (email, password))
+cursor.execute("SELECT * FROM users WHERE email=%s AND password=%s", (email, password))
 user = cursor.fetchone()
 
 if user:
-    print("valid")  
+    print("valid")
 else:
-    print("invalid")  
+    print("invalid")
 
-
+cursor.close()
 conn.close()
