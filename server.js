@@ -54,7 +54,8 @@ app.post("/api/register", (req, res) => {
     return res.status(400).json({ message: "Invalid Gmail address." });
   }
 
-  const python = spawn("python", ["SignUp.py", name, email, password]);
+  //const python = spawn("python", ["SignUp.py", name, email, password]);
+  const python = spawn("python3", ["SignUp.py", name, email, password]);
 
   python.stdout.on("data", (data) => {
     console.log(`Python Output: ${data}`);
@@ -82,7 +83,8 @@ app.post("/api/login", (req, res) => {
     return res.status(400).json({ message: "Email and password are required!" });
   }
 
-  const python = spawn("python", ["LoginCheck.py", email, password]);
+  //const python = spawn("python", ["LoginCheck.py", email, password]);
+  const python = spawn("python3", ["LoginCheck.py", email, password]);
 
   python.stdout.on("data", (data) => {
     const output = data.toString().trim();
